@@ -1,4 +1,4 @@
-# This work is currently under peer review. We will release the associated datasets and code following the receipt of the review comments. We appreciate your interest and kindly ask you to stay tuned for upcoming updates.
+**This work is currently under peer review. We will release the associated datasets and code following the receipt of the review comments. We appreciate your interest and kindly ask you to stay tuned for upcoming updates.**
 
 ## TODO list
 
