@@ -51,6 +51,42 @@ python emoca/gdl_apps/EMOCA/demos/test_emoca_on_video.py \
 --save_codes 
 ```
 
+## Dataset recipe
+
+### How to use
+```python
+import pickle
+with open('dataset/test_stage1_text.pkl', 'rb') as file:
+    loaded_list_of_str = pickle.load(file)
+with open('dataset/test_stage1_exps.pkl', 'rb') as file:
+    loaded_list_of_exps = pickle.load(file)
+print(loaded_list_of_str[:2])
+print(loaded_list_of_exps[0])
+
+#Output
+# ["the two aren't mutually exclusive!", 'You should throw this out.']
+# [[ 0.00248473  0.55392444  0.41335008 ...  0.02582393  0.05078617
+#   -0.07435226]
+#  ...
+```
+
+### Visualization
+
+
+<table>
+    <tr>
+        <td colspan="2"><strong>Spoken words</strong>: The two aren't mutually exclusive!</td>
+        <td><img src="https://github.com/WalkerMitty/EmoAva/blob/main/resource/S03E07_rgb2.gif" width="150" height="150" alt="video"></td>
+        <td><img src="https://github.com/WalkerMitty/EmoAva/blob/main/resource/S03E07_geometry2.gif" width="150" height="150" alt="video"></td>
+    </tr>
+    <tr>
+        <td colspan="2"><strong>Spoken words</strong>: You should throw this out.</td>
+        <td><img src="https://github.com/WalkerMitty/EmoAva/blob/main/resource/dia170_rgb2.gif" width="150" height="150" alt="video"></td>
+        <td><img src="https://github.com/WalkerMitty/EmoAva/blob/main/resource/dia170_geometry2.gif" width="150" height="150" alt="video"></td>
+    </tr>
+</table>
+
+
 
 ## TODO list
 
