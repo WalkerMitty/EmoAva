@@ -86,6 +86,34 @@ print(loaded_list_of_exps[0])
     </tr>
 </table>
 
+## Generated expressions
+
+<table>
+    <tr>
+        <td><strong>Spoken words:</strong> What a beautiful story.</td>
+        <td><img src="https://github.com/XvHaidong/some-projects/blob/main/resource/15_s_100_1029.gif" width="150" height="172.5" alt="video"></td>
+        <td><strong>spoken words:</strong> I'm sorry, honey.</td>
+        <td><img src="https://github.com/XvHaidong/some-projects/blob/main/resource/15_s_13_832.gif" width="150" height="172.5" alt="video"></td>
+    </tr>
+    <tr>
+        <td><strong>Spoken words:</strong> so, yeah, good to see you.</td>
+        <td><img src="https://github.com/XvHaidong/some-projects/blob/main/resource/15_s_87_1168.gif" width="150" height="172.5" alt="video"></td>
+        <td><strong>Spoken words:</strong> I am so dead..</td>
+        <td><img src="https://github.com/XvHaidong/some-projects/blob/main/resource/15_s_13_3.gif" width="150" height="172.5" alt="video"></td>
+    </tr>
+    <tr>
+        <td><strong>Spoken words:</strong> I just know that with you <br>by my side that anything is possible.</td>
+        <td><img src="https://github.com/XvHaidong/some-projects/blob/main/resource/15_s_13_925.gif" width="150" height="172.5" alt="video"></td>
+        <td><strong>Spoken words:</strong> What the hell? </td>
+        <td><img src="https://github.com/XvHaidong/some-projects/blob/main/resource/15_s_21_718.gif" width="150" height="172.5" alt="video"></td>
+    </tr>
+    <tr>
+        <td><strong>Spoken words:</strong> That'd be great!.</td>
+        <td><img src="https://github.com/XvHaidong/some-projects/blob/main/resource/15_s_13_904.gif" width="150" height="172.5" alt="video"></td>
+        <td><strong>Spoken words:</strong> Yeah, it was really hard.</td>
+        <td><img src="https://github.com/XvHaidong/some-projects/blob/main/resource/15_s_13_74.gif" width="150" height="172.5" alt="video"></td>
+    </tr>
+</table>
 
 
 ## TODO list
