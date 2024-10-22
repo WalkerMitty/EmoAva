@@ -1,5 +1,33 @@
-**This work is currently under peer review. We will release all the associated datasets and code following the receipt of the review comments. We appreciate your interest and kindly ask you to stay tuned for upcoming updates.**
+**Note: this work is currently under peer review. We will release all the associated datasets and code following the receipt of the review comments. We appreciate your interest and kindly ask you to stay tuned for upcoming updates.**
 
+## Some generated expressions
+
+<table>
+    <tr>
+        <td><strong>Text:</strong> What a beautiful story.</td>
+        <td><img src="https://github.com/WalkerMitty/EmoAva/blob/main/resource/15_s_100_1029.gif" width="150" height="172.5" alt="video"></td>
+        <td><strong>Text:</strong> I'm sorry, honey.</td>
+        <td><img src="https://github.com/WalkerMitty/EmoAva/blob/main/resource/15_s_13_832.gif" width="150" height="172.5" alt="video"></td>
+    </tr>
+    <tr>
+        <td><strong>Text:</strong> so, yeah, good to see you.</td>
+        <td><img src="https://github.com/WalkerMitty/EmoAva/blob/main/resource/15_s_87_1168.gif" width="150" height="172.5" alt="video"></td>
+        <td><strong>Text:</strong> I am so dead..</td>
+        <td><img src="https://github.com/WalkerMitty/EmoAva/blob/main/resource/15_s_13_3.gif" width="150" height="172.5" alt="video"></td>
+    </tr>
+    <tr>
+        <td><strong>Text:</strong> I just know that with you <br>by my side that anything is possible.</td>
+        <td><img src="https://github.com/WalkerMitty/EmoAva/blob/main/resource/15_s_13_925.gif" width="150" height="172.5" alt="video"></td>
+        <td><strong>Text:</strong> What the hell? </td>
+        <td><img src="https://github.com/WalkerMitty/EmoAva/blob/main/resource/15_s_21_718.gif" width="150" height="172.5" alt="video"></td>
+    </tr>
+    <tr>
+        <td><strong>Text:</strong> That'd be great!.</td>
+        <td><img src="https://github.com/WalkerMitty/EmoAva/blob/main/resource/15_s_13_904.gif" width="150" height="172.5" alt="video"></td>
+        <td><strong>Text:</strong> Yeah, it was really hard.</td>
+        <td><img src="https://github.com/WalkerMitty/EmoAva/blob/main/resource/15_s_13_74.gif" width="150" height="172.5" alt="video"></td>
+    </tr>
+</table>
 
 ## Dataset preprocessing 
 
@@ -70,50 +98,32 @@ print(loaded_list_of_exps[0])
 #  ...
 ```
 
-### Visualization
+### Visualization of dataset samples
 
 
 <table>
     <tr>
-        <td colspan="2"><strong>Spoken words</strong>: The two aren't mutually exclusive!</td>
+        <td><strong>1</strong></td>
+        <td colspan="2"><strong>Text</strong>: The two aren't mutually exclusive!</td>
         <td><img src="https://github.com/WalkerMitty/EmoAva/blob/main/resource/S03E07_rgb2.gif" width="150" height="150" alt="video"></td>
         <td><img src="https://github.com/WalkerMitty/EmoAva/blob/main/resource/S03E07_geometry2.gif" width="150" height="150" alt="video"></td>
     </tr>
     <tr>
-        <td colspan="2"><strong>Spoken words</strong>: You should throw this out.</td>
+        <td><strong>2</strong></td>
+        <td colspan="2"><strong>Text</strong>: You should throw this out.</td>
         <td><img src="https://github.com/WalkerMitty/EmoAva/blob/main/resource/dia170_rgb2.gif" width="150" height="150" alt="video"></td>
         <td><img src="https://github.com/WalkerMitty/EmoAva/blob/main/resource/dia170_geometry2.gif" width="150" height="150" alt="video"></td>
     </tr>
-</table>
-
-## Generated expressions
-
-<table>
     <tr>
-        <td><strong>Spoken words:</strong> What a beautiful story.</td>
-        <td><img src="https://github.com/WalkerMitty/EmoAva/blob/main/resource/15_s_100_1029.gif" width="150" height="172.5" alt="video"></td>
-        <td><strong>spoken words:</strong> I'm sorry, honey.</td>
-        <td><img src="https://github.com/WalkerMitty/EmoAva/blob/main/resource/15_s_13_832.gif" width="150" height="172.5" alt="video"></td>
+         <td><strong>... </strong></td>
+        <td colspan="5"><strong>... </strong></td>
     </tr>
-    <tr>
-        <td><strong>Spoken words:</strong> so, yeah, good to see you.</td>
-        <td><img src="https://github.com/WalkerMitty/EmoAva/blob/main/resource/15_s_87_1168.gif" width="150" height="172.5" alt="video"></td>
-        <td><strong>Spoken words:</strong> I am so dead..</td>
-        <td><img src="https://github.com/WalkerMitty/EmoAva/blob/main/resource/15_s_13_3.gif" width="150" height="172.5" alt="video"></td>
-    </tr>
-    <tr>
-        <td><strong>Spoken words:</strong> I just know that with you <br>by my side that anything is possible.</td>
-        <td><img src="https://github.com/WalkerMitty/EmoAva/blob/main/resource/15_s_13_925.gif" width="150" height="172.5" alt="video"></td>
-        <td><strong>Spoken words:</strong> What the hell? </td>
-        <td><img src="https://github.com/WalkerMitty/EmoAva/blob/main/resource/15_s_21_718.gif" width="150" height="172.5" alt="video"></td>
-    </tr>
-    <tr>
-        <td><strong>Spoken words:</strong> That'd be great!.</td>
-        <td><img src="https://github.com/WalkerMitty/EmoAva/blob/main/resource/15_s_13_904.gif" width="150" height="172.5" alt="video"></td>
-        <td><strong>Spoken words:</strong> Yeah, it was really hard.</td>
-        <td><img src="https://github.com/WalkerMitty/EmoAva/blob/main/resource/15_s_13_74.gif" width="150" height="172.5" alt="video"></td>
+        <tr>
+         <td><strong>15, 000</strong></td>
+        <td colspan="5"><strong>... </strong></td>
     </tr>
 </table>
+
 
 
 ## TODO list
