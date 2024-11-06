@@ -1,35 +1,13 @@
-**Note: this work is currently under peer review. We will release all the associated datasets and code following the receipt of the review comments. We appreciate your interest and kindly ask you to stay tuned for upcoming updates.**
+❗❗❗**Note: this work is currently under peer review. We will release all the associated datasets and codes following the receipt of the review comments. We appreciate your interest and kindly ask you to stay tuned for upcoming updates.**
 
-## Some generated expressions
+## 📰 News
+- **[2024-10-21]: Dataset preprocessing codes, EmoAva test set, and partial generated results are released.** 
 
-<table>
-    <tr>
-        <td><strong>Text:</strong> What a beautiful story.</td>
-        <td><img src="https://github.com/WalkerMitty/EmoAva/blob/main/resource/15_s_100_1029.gif" width="150" height="172.5" alt="video"></td>
-        <td><strong>Text:</strong> I'm sorry, honey.</td>
-        <td><img src="https://github.com/WalkerMitty/EmoAva/blob/main/resource/15_s_13_832.gif" width="150" height="172.5" alt="video"></td>
-    </tr>
-    <tr>
-        <td><strong>Text:</strong> so, yeah, good to see you.</td>
-        <td><img src="https://github.com/WalkerMitty/EmoAva/blob/main/resource/15_s_87_1168.gif" width="150" height="172.5" alt="video"></td>
-        <td><strong>Text:</strong> I am so dead..</td>
-        <td><img src="https://github.com/WalkerMitty/EmoAva/blob/main/resource/15_s_13_3.gif" width="150" height="172.5" alt="video"></td>
-    </tr>
-    <tr>
-        <td><strong>Text:</strong> I just know that with you <br>by my side that anything is possible.</td>
-        <td><img src="https://github.com/WalkerMitty/EmoAva/blob/main/resource/15_s_13_925.gif" width="150" height="172.5" alt="video"></td>
-        <td><strong>Text:</strong> What the hell? </td>
-        <td><img src="https://github.com/WalkerMitty/EmoAva/blob/main/resource/15_s_21_718.gif" width="150" height="172.5" alt="video"></td>
-    </tr>
-    <tr>
-        <td><strong>Text:</strong> That'd be great!.</td>
-        <td><img src="https://github.com/WalkerMitty/EmoAva/blob/main/resource/15_s_13_904.gif" width="150" height="172.5" alt="video"></td>
-        <td><strong>Text:</strong> Yeah, it was really hard.</td>
-        <td><img src="https://github.com/WalkerMitty/EmoAva/blob/main/resource/15_s_13_74.gif" width="150" height="172.5" alt="video"></td>
-    </tr>
-</table>
 
-## Dataset preprocessing 
+
+
+
+## 🔧 Dataset preprocessing 
 
 <!-- ## Download from YouTube -->
 
@@ -98,7 +76,7 @@ print(loaded_list_of_exps[0])
 #  ...
 ```
 
-### Visualization of dataset samples
+### 👀 Visualization of dataset samples
 
 
 <table>
@@ -126,9 +104,21 @@ print(loaded_list_of_exps[0])
 
 
 
-## TODO list
+## 🗒️TODO list
 
 - [ ] releasing the EmoAva dataset and evaluation codes
 - [ ] releasing the raw videos/audio and the code for automated dataset construction (preprocessing)
 - [ ] releasing the code of CTEG model
 - [ ] relaxing the code of GiGA model
+
+
+## 🗳️ Some generated expressions
+
+<div style="text-align: center;">
+
+| Text: What a beautiful story. | Text: I'm sorry, honey. | Text: so, yeah, good to see you. | Text: I am so dead. |
+| :----------------------: | :----------------------: | :----------------------: | :----------------------: |
+| <video src="https://github.com/user-attachments/assets/5166c81b-9945-47cd-aecb-f46068dd79df" style="width:220px; height:240px; display: block; margin: 0 auto; max-width: 100%; max-height: 100%;" /> | <video src="https://github.com/user-attachments/assets/e2884e98-c592-4796-8a90-a645126d3561" style="width:220px; height:240px;" /> | <video src="https://github.com/user-attachments/assets/549280d2-43fd-4718-a56a-c9c7cb5298e1" style="width:220px; height:240px;" /> | <video src="https://github.com/user-attachments/assets/d625c273-5c3e-4b8b-8670-52bc08932988" style="width:220px; height:240px;" /> |
+| **Text: I just know that with you <br> by my side that anything is possible.** | ****Text:** What the hell?** | **Text:** **That'd be great!** | **Text:** **Yeah, it was really hard.** |
+| <video src="https://github.com/user-attachments/assets/d203c84b-0fe5-45c4-9554-55671be2105f" style="width:220px; height:240px;" /> | <video src="https://github.com/user-attachments/assets/226c4d88-ca1c-4bb1-9bfe-9c03c71dd370" style="width:220px; height:240px;" /> | <video src="https://github.com/user-attachments/assets/2c7260c1-86dd-4087-8452-6208ab1ad7cc" style="width:220px; height:240px;" /> | <video src="https://github.com/user-attachments/assets/d6b21680-0b57-4283-8448-b7436f6242eb" style="width:220px; height:240px;" /> |
+</div>
