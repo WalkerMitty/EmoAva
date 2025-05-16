@@ -109,6 +109,5 @@ print(loaded_list_of_exps[0])
 - [ ] releasing the EmoAva dataset and evaluation codes
 - [ ] releasing the raw videos/audio and the code for automated dataset construction (preprocessing)
 - [ ] releasing the code of CTEG model
-- [ ] relaxing the code of GiGA model
 
 
