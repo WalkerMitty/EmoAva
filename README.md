@@ -1,4 +1,4 @@
-❗❗❗**Note: this work is currently under peer review. We will release all the associated datasets and codes following the receipt of the review comments. We appreciate your interest and kindly ask you to stay tuned for upcoming updates.**
+❗❗❗**Note: this work is currently under peer review. We will release all the associated datasets. We appreciate your interest and kindly ask you to stay tuned for upcoming updates.**
 
 ## 📰 News
 - **Dataset preprocessing codes, EmoAva test set, and partial generated results are released.** 
