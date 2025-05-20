@@ -111,3 +111,35 @@ print(loaded_list_of_exps[0])
 - [ ] releasing the code of CTEG model
 
 
+## Some visualization videos
+<div style="text-align: center;">
+  <table style="margin: 0 auto; border-collapse: collapse;">
+    <tr>
+      <td>Text: I am so dead.</td>
+      <td>Text: That'd be great!</td>
+      <td>Text: What a beautiful story.</td>
+      <td>Text: What the hell?</td>
+    </tr>
+    <tr>
+      <td>
+        <video src="https://github.com/user-attachments/assets/d625c273-5c3e-4b8b-8670-52bc08932988" style="width:220px; height:240px;"></video>
+      </td>
+      <td>
+        <video src="https://github.com/user-attachments/assets/2c7260c1-86dd-4087-8452-6208ab1ad7cc" style="width:220px; height:240px;"></video>
+      </td>
+      <td>
+        <video src="https://github.com/user-attachments/assets/5166c81b-9945-47cd-aecb-f46068dd79df" style="width:220px; height:240px;"></video>
+      </td>
+      <td>
+        <video src="https://github.com/user-attachments/assets/226c4d88-ca1c-4bb1-9bfe-9c03c71dd370" style="width:220px; height:240px;"></video>
+      </td>
+    </tr>
+    <tr>
+      <td><a href="https://github.com/user-attachments/assets/d625c273-5c3e-4b8b-8670-52bc08932988" target="_blank">link</a></td>
+      <td><a href="https://github.com/user-attachments/assets/2c7260c1-86dd-4087-8452-6208ab1ad7cc" target="_blank">link</a></td>
+      <td><a href="https://github.com/user-attachments/assets/5166c81b-9945-47cd-aecb-f46068dd79df" target="_blank">link</a></td>
+      <td><a href="https://github.com/user-attachments/assets/226c4d88-ca1c-4bb1-9bfe-9c03c71dd370" target="_blank">link</a></td>
+    </tr>
+  </table>
+</div>
+
