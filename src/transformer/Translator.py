@@ -1,28 +1,24 @@
-''' This module will handle the text generation with beam search. '''
-
 import torch
 import torch.nn as nn
 import torch.nn.functional as F
 from transformer.Models import Transformer, get_pad_mask, get_subsequent_mask
 import numpy as np
-
+import os
 class TranslatorContinue(nn.Module):
     ''' Load a trained model and translate in beam search fashion. '''
 
     def __init__(
             self, model, max_seq_len,
-        device,tokenizer,threshold,cvae):
+        device,tokenizer,threshold,cvae,data_source):
         super(TranslatorContinue, self).__init__()
-        # self.alpha = 0.7
         self.max_seq_len = max_seq_len
-        # self.src_pad_idx = src_pad_idx
-        # self.trg_bos_idx = trg_bos_idx
-        # self.trg_eos_idx = trg_eos_idx
+
         self.device = device
         self.model = model
         self.tokenizer = tokenizer
         self.threshold = threshold
         self.cvae = cvae
+        self.data_source = data_source
         self.model.eval()
 
     def _model_decode(self, trg_exp, enc_output, src_mask):
@@ -55,10 +51,6 @@ class TranslatorContinue(nn.Module):
         dec_output, *_ = self.model.decoder(tgt_seq, tgt_mask, tgt_exp, tgt_exp_mask, enc_output, src_mask)
         dec_output = self.model.trg_exp_prj(dec_output)
         return dec_output
-        # tokenizer = BertTokenizer.from_pretrained(opt.pretrained_path)
-        # tgt_texts_train = [' '.join(['[UNK]'] * i) for i in tgt_exps_steps_train]
-        # tgt_texts_dev = [' '.join(['[UNK]'] * i) for i in tgt_exps_steps_dev]
-        # training_data = get_dataloader(src_texts_train, tgt_texts_train,tgt_exps_train, tokenizer, opt.batch_size,opt.src_len,opt.trg_len,opt.trg_exp_dim,shuffle=False)
 
     def _get_init_state(self, src_seq, src_mask):
         # beam_size = self.beam_size
@@ -67,9 +59,7 @@ class TranslatorContinue(nn.Module):
         else:
 
             enc_output, *_ = self.model.encoder(src_seq, src_mask) #[1,11,512]
-        # dec_output = self._model_decode(self.init_seq, enc_output, src_mask) #dec_output [1,50]
-        # trg_mask = get_subsequent_mask(self.init_seq)
-        # dec_output, *_ = self.model.decoder(self.init_seq, trg_mask, enc_output, src_mask)
+
         bsz = src_seq.size()[0]
         tgt_text = ['[UNK] [UNK]']*bsz
         tgt_encodings = self.tokenizer(
@@ -80,7 +70,7 @@ class TranslatorContinue(nn.Module):
         trg_exp = torch.zeros(bsz,2,53).to(self.device) # will not use this value
         exp_mask = torch.zeros(bsz, 2, dtype=torch.bool).to(self.device) # set false, so this value will disabled
         exp_mask[:,1] = True
-        mean = np.load('stage1_mean.npy')  #(53,)
+        mean = np.load(os.path.join(self.data_source,'stage1_mean.npy'))  #(53,)
         dec_output = torch.tensor(mean).unsqueeze(0).unsqueeze(0).expand(bsz, 1, 53).to(self.device)
 
 
@@ -110,15 +100,12 @@ class TranslatorContinue(nn.Module):
         bsz = src_seq.size()[0]
         with torch.no_grad():
             enc_output,gen_seq = self._get_init_state(src_seq, src_mask)
-            # enc_output, gen_seq = self._get_all_state(src_seq,src_mask,tgt_seq,tgt_mask,tgt_exp_mask,tgt_exp)
+
             for step in range(2, max_seq_len):    # decode up to max length
                 dec_output = self._model_decode(gen_seq, enc_output, src_mask) #[bsz, step, 50]
                 padding = torch.zeros(bsz,1,53).to(self.device)
                 gen_seq = torch.cat((gen_seq[:,:-1,:],dec_output[:,-2,:].unsqueeze(1),padding),dim=1)
 
-                # self.eos_in_all(gen_seq,no_end_index)
-                # if no_end_index==[]:
-                    # break
         return gen_seq[:,1:-1,:] 
     
     def parallel_inference(self,src_seq,src_mask,tgt_seq,tgt_mask,tgt_exp_mask,tgt_exp):

@@ -1,63 +1,37 @@
-❗❗❗**Note: this work is currently under peer review. We will release all the associated datasets. We appreciate your interest and kindly ask you to stay tuned for upcoming updates.**
+
 
 ## 📰 News
-- **Dataset preprocessing codes, EmoAva test set, and partial generated results are released.** 
+- **Dataset preprocessing codes, EmoAva test set, and partial generated results are released.** 2024-10 
+- **🎉🎉🎉 All Datasets are released. The training, inference and visualization codes are released.** 2025-8
 
 
 
 
 
-## 🔧 Dataset preprocessing 
-
-<!-- ## Download from YouTube -->
-
-### Environment
-
-```shell
-sudo apt-get install ffmpeg
-sudo apt-get install yt-dlp
-pip install yt-dlp
-
-git clone https://github.com/m-bain/whisperX.git
-cd whisperX
-pip install -e .
-
-facenet-pytorch==2.6.0
-mmcv==2.2.0
-```
+## 📂 README Overview
 
 
-### Running command
-```
-python youtube_down.py \
---type video \
---id youtube_id \
---save_path your_path \
-# --no_audio 
-```
+- [📰 News](#-news)
+- [📂 README Overview](#-readme-overview)
+- [😊Dataset recipe](#dataset-recipe)
+  - [How to use](#how-to-use)
+  - [👀 Visualization of dataset samples](#-visualization-of-dataset-samples)
+  - [Download the training set](#download-the-training-set)
+  - [Preprocessing scripts](#preprocessing-scripts)
+- [🧐Continuous Text-to-Expression Model](#continuous-text-to-expression-model)
+  - [Environment](#environment)
+  - [Training](#training)
+  - [Inference](#inference)
+  - [Validation](#validation)
+  - [Visualization](#visualization)
+- [📺Some visualization videos](#some-visualization-videos)
+- [Acknowledgements](#acknowledgements)
+- [Citation](#citation)
 
 
-Get [token](https://huggingface.co/pyannote/speaker-diarization-3.1) and then type it in line 81 in process_youtube.py
 
 
-```
-python process_youtube.py \
---video_path PATH \  # videos (path) downloaded from the above file
---audio_path PATH \ # path where to save the audio files (.flac format)
---time_json PATH \ # a json file to record the timestamps
---split_time_path PATH \ # videos (path) sliced along time.
---data_json PATH \ # metadata file in json format
---single_video_path PATH  # videos (path) sliced along space.
-```
-For 3DMM parameters extraction, please refer to [EMOCA](https://github.com/radekd91/emoca/tree/release/EMOCA_v2/gdl_apps/EMOCA):
-```
-python emoca/gdl_apps/EMOCA/demos/test_emoca_on_video.py \
---input_video VIDEO_PATH \
---output_folder YOUR_PATH \
---save_codes 
-```
-
-## Dataset recipe
+## 😊Dataset recipe
 
 ### How to use
 ```python
@@ -103,15 +77,100 @@ print(loaded_list_of_exps[0])
 </table>
 
 
+### Download the training set
 
-## 🗒️TODO list
+Full expression codes and a baseline model can be found in [EmoAva](https://drive.google.com/drive/folders/1YqNRyk4QliBTpaz8hQl_4_HgQgB6zssK).
 
-- [ ] releasing the EmoAva dataset and evaluation codes
-- [ ] releasing the raw videos/audio and the code for automated dataset construction (preprocessing)
-- [ ] releasing the code of CTEG model
+We also provide single-person, single-view video and audio files. Researchers are required to complete the license_agreement.pdf and send it to [mail](182haidong@gmail.com) to obtain access.
+
+Please note that researchers must also obtain permission for both the [MELD](https://github.com/declare-lab/MELD) and [MEMOR](https://dl.acm.org/doi/10.1145/3394171.3413909) datasets.
+
+### Preprocessing scripts
+If you wish to construct the dataset yourself from Youtube, please refer to [README](./dataset/README.md).
 
 
-## Some visualization videos
+## 🧐Continuous Text-to-Expression Model
+
+### Environment
+```shell
+conda create -n cteg python=3.10
+conda activate cteg
+cd src
+pip install -r requirements.txt
+# (optional) If you want to visualize the results, then run:
+git clone https://github.com/facebookresearch/pytorch3d.git
+cd pytorch3d && pip install -e .
+```
+
+### Training
+
+Download the dataset and put it in the `EmoAva/dataset` directory.
+
+
+```
+EmoAva
+|-- dataset
+|-- |-- train_stage1_text.pkl
+|-- |-- train_stage1_exps.pkl
+|-- |-- test_stage1_text.pkl
+|-- |-- test_stage1_exps.pkl
+|-- |-- dev_stage1_text.pkl
+|-- |-- dev_stage1_exps.pkl
+|-- |-- stage1_mean.npy
+|-- |-- stage1_std.npy
+```
+Set `pretrained_path` in `src/train.sh` to the downloaded bert-base-cased model path, then run:
+```shell
+bash train.sh
+```
+
+### Inference
+
+Set the following parameters in `infer.sh`
+```shell
+# typing your trained model here, or you can use the released model in EmoAva.
+-model "xx/output/model.chkpt"
+# downloaded bert-base-cased model
+-tokenizer_path "bert-base-cased"
+# your absolute path to the dataset
+-data_source "xx/EmoAva/dataset"
+```
+Then run
+```shell
+bash infer.sh
+```
+
+### Validation
+
+Set `infer_mode` in infer.sh to `p`, obtain the prediction result: `para_result.pt`
+Then run
+
+```shell
+python evaluate.py \
+	--para_predict para_result.pt \
+	--split test \
+	--tokenizer_path bert-base-cased
+```
+This script will output the continuous PPL metric. More details can be found in our paper.
+
+### Visualization
+
+Render facial videos from the expression vectors in the test set:
+
+```shell
+python visualize.py \
+--exp_path ../dataset/test_stage1_exps.pkl \
+--output all_videos
+```
+
+
+
+
+
+
+
+
+## 📺Some visualization videos
 <div style="text-align: center;">
   <table style="margin: 0 auto; border-collapse: collapse;">
     <tr>
@@ -142,4 +201,18 @@ print(loaded_list_of_exps[0])
     </tr>
   </table>
 </div>
+
+
+
+## Acknowledgements
+
+- [DECA](https://github.com/yfeng95/DECA)
+- [Emoca](https://github.com/radekd91/emoca)
+- [attention-torch](https://github.com/jadore801120/attention-is-all-you-need-pytorch)
+- [MELD](https://github.com/declare-lab/MELD)
+- [MEMOR](https://dl.acm.org/doi/10.1145/3394171.3413909)
+- [LM-listener](https://github.com/sanjayss34/lm-listener)
+
+
+## Citation
 

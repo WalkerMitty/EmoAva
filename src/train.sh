@@ -1,0 +1,18 @@
+OMP_NUM_THREADS=8 python train.py \
+	-second_sample one \
+	-n_layers 1 \
+	-feature_attention \
+	-scale_emb \
+	-flat_method casual_attention \
+	-one_step_loss \
+	-encoder_pretrained bert-base \
+	-pretrained_path bert-base-cased \
+	-fix_encoder \
+	-output_dir output \
+	-b 256 \
+	-trg_len 256 \
+	-warmup 4000 \
+	-epoch 100 \
+	-eval_interval 1 \
+	-cvae \
+	-use_tb

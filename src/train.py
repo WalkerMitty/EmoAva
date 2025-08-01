@@ -1,7 +1,3 @@
-'''
-This script handles the training process.
-'''
-
 import argparse
 import math
 import time
@@ -15,23 +11,13 @@ import torch
 torch.autograd.set_detect_anomaly(True)
 import torch.nn.functional as F
 import torch.optim as optim
-# from torchtext.data import Field, Dataset, BucketIterator
-# from torchtext.datasets import TranslationDataset
-
-# import transformer.Constants as Constants
 from transformer.Models import Transformer
 from transformer.Optim import ScheduledOptim
-from my_dataloader import load_dataset_split,get_dataloader,load_dataset_split_batch
+from em_dataloader import get_dataloader,load_dataset_split_batch
 from transformers import BertTokenizer,BertModel
 
 
 def cal_loss_continue(pred, gold, gold_mask_o,return_first=False):
-    '''
-    :param pred: [bsz, seq-1, 50]
-    :param gold: [bsz, seq-1, 50]
-    :param gold_mask: [bsz, seq-1]
-    :return: 
-    '''
     weights = torch.ones(53).to(gold.device)
     weights[-3:] = 5.0  
     pred = pred * weights
@@ -128,16 +114,12 @@ def eval_epoch(model, validation_data, device, opt):
     total_loss = 0
     total_first_token_loss = 0
     all_batchs = 0
-    # total_loss_kl = 0
-    # kl_loss = 0
-    # total_one_step_loss = 0
+
     desc = '  - (Validation) '
     with torch.no_grad():
         for batch in tqdm(validation_data, mininterval=2, desc=desc, leave=False):
 
             # prepare data
-            # src_seq = patch_src(batch.src, opt.src_pad_idx).to(device)
-            # trg_seq, gold = map(lambda x: x.to(device), patch_trg(batch.trg, opt.trg_pad_idx))
             src_seq = batch['src_input_ids'].to(device)
             src_mask = batch['src_attention_mask'].to(device)
             tgt_seq = batch['tgt_input_ids'].to(device)
@@ -241,17 +223,7 @@ def train(model, training_data, validation_data, optimizer, device, opt):
             tb_writer.add_scalar('learning_rate', lr, epoch_i)
 
 def main():
-    '''
-    Usage:
-    python train.py -data_pkl m30k_deen_shr.pkl -log m30k_deen_shr -embs_share_weight -proj_share_weight -label_smoothing -output_dir output -b 256 -warmup 128000
-    '''
-
     parser = argparse.ArgumentParser()
-
-    # parser.add_argument('-data_pkl', default=None)     # all-in-1 data pickle or bpe field
-
-    # parser.add_argument('-train_path', default=None)   # bpe encoded data
-    # parser.add_argument('-val_path', default=None)     # bpe encoded data
 
     parser.add_argument('-epoch', type=int, default=10)
     parser.add_argument('-b', '--batch_size', type=int, default=2048)
@@ -309,37 +281,37 @@ def main():
 
     if not opt.output_dir:
         print('No experiment result will be saved.')
-        raise
+        raise ValueError('Please specify a directory to save the experiment results.')
 
     if not os.path.exists(opt.output_dir):
         os.makedirs(opt.output_dir)
-
-    # if opt.batch_size < 2048 and opt.n_warmup_steps <= 4000:
-    #     print('[Warning] The warmup steps may be not enough.\n'\
-    #           '(sz_b, warmup) = (2048, 4000) is the official setting.\n'\
-    #           'Using smaller batch w/o longer warmup may cause '\
-    #           'the warmup stage ends with only little data trained.')
 
     device = torch.device('cuda' if opt.cuda else 'cpu')
 
     #========= Loading Dataset =========#
 
-    # if all((opt.train_path, opt.val_path)):
-    #     training_data, validation_data = prepare_dataloaders_from_bpe_files(opt, device)
-    # elif opt.data_pkl:
+
     src_texts_train, tgt_exps_train, tgt_exps_steps_train = load_dataset_split_batch('train')
     src_texts_dev, tgt_exps_dev, tgt_exps_steps_dev = load_dataset_split_batch('dev')
     tokenizer = BertTokenizer.from_pretrained(opt.pretrained_path)
     tgt_texts_train = [' '.join(['[UNK]'] * i) for i in tgt_exps_steps_train]
     tgt_texts_dev = [' '.join(['[UNK]'] * i) for i in tgt_exps_steps_dev]
-    training_data = get_dataloader(src_texts_train, tgt_texts_train,tgt_exps_train, tokenizer, opt.batch_size,opt.src_len,opt.trg_len,opt.trg_exp_dim,shuffle=True)
-    validation_data = get_dataloader(src_texts_dev, tgt_texts_dev, tgt_exps_dev,tokenizer,opt.batch_size, opt.src_len, opt.trg_len,opt.trg_exp_dim)
+    train_config = {
+        'tokenizer':tokenizer,
+        'batch_size':opt.batch_size,
+        'src_len':opt.src_len,
+        'trg_len':opt.trg_len,
+        'trg_exp_dim':opt.trg_exp_dim,
+        'shuffle':True,
+    }
+    training_data = get_dataloader(src_texts_train, tgt_texts_train,tgt_exps_train, train_config)
+    train_config['shuffle'] = False 
+    validation_data = get_dataloader(src_texts_dev, tgt_texts_dev, tgt_exps_dev,train_config)
     opt.src_vocab_size = tokenizer.vocab_size
 
     opt.src_pad_idx = 0
     opt.trg_pad_idx = 0
-    # else:
-        # raise
+
 
     print(opt)
     if opt.encoder_pretrained=='bert-base':
