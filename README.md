@@ -1,4 +1,4 @@
-
+## When Words Smile😀: Generating Diverse Emotional Facial Expressions from Text
 
 ## 📰 News
 - **Dataset preprocessing codes, EmoAva test set, and partial generated results are released.** 2024-10 
@@ -11,6 +11,7 @@
 ## 📂 README Overview
 
 
+- [When Words Smile�: Generating Diverse Emotional Facial Expressions from Text](#when-words-smile-generating-diverse-emotional-facial-expressions-from-text)
 - [📰 News](#-news)
 - [📂 README Overview](#-readme-overview)
 - [😊Dataset recipe](#dataset-recipe)
