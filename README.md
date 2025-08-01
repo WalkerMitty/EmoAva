@@ -162,7 +162,7 @@ python visualize.py \
 --exp_path ../dataset/test_stage1_exps.pkl \
 --output all_videos
 ```
-
+Note: You need to obtain `FLAME_albedo_from_BFM.npz` (~400MB) from [this](https://github.com/TimoBolkart/BFM_to_FLAME), then put it to `src/data/`.
 
 
 
