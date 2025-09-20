@@ -3,6 +3,7 @@
 ## 📰 News
 - **Dataset preprocessing codes, EmoAva test set, and partial generated results are released.** 2024-10 
 - **🎉🎉🎉 All Datasets are released. The training, inference and visualization codes are released.** 2025-8
+- **The paper is accepted by EMNLP 2025 (oral).**
 
 
 
