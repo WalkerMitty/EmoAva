@@ -83,7 +83,7 @@ print(loaded_list_of_exps[0])
 
 Full expression codes and a baseline model can be found in [EmoAva](https://drive.google.com/drive/folders/1YqNRyk4QliBTpaz8hQl_4_HgQgB6zssK).
 
-We also provide single-person, single-view video and audio files. Researchers are required to complete the license_agreement.pdf and send it to [mail](182haidong@gmail.com) to obtain access.
+We also provide single-person, single-view video and audio files. These were used to derive the expression codes but are not required to reproduce or build upon our work. We share them in case they may benefit future research, but their use is non-essential. Researchers are required to complete the license_agreement.pdf and send it to [mail](182haidong@gmail.com) to obtain access.
 
 Please note that researchers must also obtain permission for both the [MELD](https://github.com/declare-lab/MELD) and [MEMOR](https://dl.acm.org/doi/10.1145/3394171.3413909) datasets.
 
